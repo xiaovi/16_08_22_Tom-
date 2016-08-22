@@ -48,6 +48,10 @@
         NSString *path = [[NSBundle mainBundle] pathForResource:imgName ofType:nil];
         //使用该方法没有缓存问题.
         UIImage *img = [[UIImage alloc] initWithContentsOfFile:path];
+
+        //如果项目中经常需要用到该图片,则选择imageNamed:的方法,
+        //如果图片加载是一次性的,或者图片比较大的 选择上面的方法
+        //UIImage *img = [UIImage imageNamed:@""];
         [images addObject:img];
     }
     //设置动画的图片
