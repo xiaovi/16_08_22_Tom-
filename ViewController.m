@@ -43,14 +43,11 @@
     for (int i = 0; i < num; i++) {
         //图片名
         NSString *imgName = [NSString stringWithFormat:@"%@_%02d.jpg", name, i];
-        //加载图片(根据文件名加载, 会有缓存)
-        //使用于图片经常使用, 图片加载一次后就进入缓存
-        //如果做程序, 使用了大量的图片, 谨慎使用imageNamed:@""该方法
-        //有缓存, 无法释放(参数传的是文件名).
-        UIImage *img = [UIImage imageNamed:imgName];
 
-        //使用该方法无缓存(用完就释放,传的是全路径)
-        //UIImage *img = [UIImage alloc] initWithContentsOfFile:<#(nonnull NSString *)#>
+        //通过NSBundle加载图片全路径, 而且可以直接写成 ofType:nil
+        NSString *path = [[NSBundle mainBundle] pathForResource:imgName ofType:nil];
+        //使用该方法没有缓存问题.
+        UIImage *img = [[UIImage alloc] initWithContentsOfFile:path];
         [images addObject:img];
     }
     //设置动画的图片
