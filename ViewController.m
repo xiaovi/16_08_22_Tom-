@@ -10,6 +10,7 @@
 
 @interface ViewController ()
 {
+    //保存图片的个数
     NSDictionary *_dict;
 }
 
